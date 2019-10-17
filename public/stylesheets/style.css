@@ -1,0 +1,714 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  -webkit-overflow-scrolling: touch;
+  overflow: hidden;
+  overflow-y: auto;
+  transform-origin: 80% 40%;
+  background-color: black;
+}
+
+
+
+/* 让画面缩放5倍类名 */
+.scale-max {
+  transform: scale(5);
+  transition: 2s;
+  opacity: 0;
+}
+
+/* 让画面缩放正常比例类名 */
+.scale-min {
+  transform: scale(1);
+  transition: 1.5s;
+  opacity: 1;
+}
+
+
+#canvas-box {
+  width: 750px;
+  height: 1440px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+
+#quesitionQ1-box {
+  position: absolute;
+  left: 50%;
+  top: 60%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.quesitionQ1-item {
+  width: 540px;
+  height: 101px;
+  background-color: blue;
+  background: url('../images/56.png') no-repeat;
+  /* overflow: hidden; */
+  text-align: center;
+  line-height: 90px;
+  font-size: 34px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  margin: 30px 0;
+}
+
+.quesitionQ1-item:nth-child(1) {
+  background-size: 100% 100%;
+  left: 50%;
+  top: 45%;
+}
+
+.quesitionQ1-item:nth-child(2) {
+  background-size: 100% 100%;
+  left: 50%;
+  top: 55%;
+}
+
+.quesitionQ1-item:nth-child(3) {
+  background-size: 100% 100%;
+  left: 50%;
+  top: 65%;
+}
+
+.quesitionQ1-item:nth-child(4) {
+  background-size: 100% 100%;
+  left: 50%;
+  top: 75%;
+}
+
+.shade {
+  background-color: rgb(17, 17, 17);
+  opacity: 0.9;
+  width: 750px;
+  height: 1440px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  display: none;
+  transition: 2s;
+}
+
+.shade img {
+  opacity: 1 !important;
+  /* border: 1px solid red; */
+  width: 0;
+  height: 0;
+}
+
+.emoji-item {
+  /* width: 419px;
+  height: 140px; */
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  transform: translate(-50%, -50%);
+  background-image: url('../images/57.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: 0;
+  height: 0;
+}
+
+
+.poker {
+  border: 1px solid rgb(55, 0, 255);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 30%;
+  display: flex;
+  justify-content: space-around;
+  /* 打开扑克层透明度 */
+  opacity: 0;
+  z-index: 1;
+}
+
+.poker div {
+  width: 30%;
+}
+
+.poker .poker-left {
+  background-color: red;
+  height: 65%;
+  transform: rotate(-20deg);
+  margin-top: 23%;
+  margin-left: 6%;
+}
+
+.poker .poker-center {
+  background-color: gold;
+  height: 65%;
+}
+
+.poker .poker-right {
+  background-color: green;
+  height: 65%;
+  transform: rotate(20deg);
+  margin-top: 23%;
+  margin-right: 6%;
+}
+
+
+
+.removeClick {
+  pointer-events: none;
+}
+
+
+
+/* loading */
+.loadingBackground {
+  width: 100%;
+  height: 100%;
+  background: url('../images/loadingBackgorund.png') no-repeat;
+  background-size: 100% 100%;
+  transform: scale(1.3);
+  transition: 1s;
+  opacity: 0;
+}
+
+.penguinHeaderTop {
+  background: url('../images/116.png') no-repeat;
+  background-size: 100% 100%;
+}
+
+.penguinHeaderBottom {
+  background: url('../images/117.png') no-repeat;
+  background-size: 100% 100%;
+  opacity: 0;
+}
+
+.penguinArmLeft {
+  width: 12%;
+  height: 16%;
+  /* border: 1px solid rgb(202, 22, 97); */
+  position: absolute;
+  left: 34%;
+  top: 83%;
+  transform: translate(-50%, -50%);
+  background: url('../images/120.png') no-repeat;
+  background-size: 100% 100%;
+  transform-origin: 100% 0%;
+}
+
+.penguinArmRight {
+  width: 8%;
+  height: 16%;
+  /* border: 1px solid rgb(204, 27, 115); */
+  position: absolute;
+  left: 66%;
+  top: 83%;
+  transform: translate(-50%, -50%);
+  background: url('../images/118.png') no-repeat;
+  background-size: 100% 100%;
+  transform-origin: 0% 0%;
+}
+
+.loadingCenter {
+  /* border: 1px solid cadetblue; */
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 42%;
+  height: 28%;
+  background: url('../images/loadingCenter.png') no-repeat;
+  background-size: 100% 100%;
+}
+
+.loadingText {
+  /* border: 1px solid cadetblue; */
+  position: absolute;
+  background-color: transparent;
+  width: 60%;
+  height: 30%;
+  left: 45%;
+  top: 22%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.loadingStar {
+  width: 100%;
+  height: 77%;
+  /* border: 1px solid rgb(243, 0, 0); */
+  border-radius: 50%;
+  position: absolute;
+  top: 14%;
+  background: url('../images/122.png') no-repeat;
+  background-size: 100% 100%;
+  /* overflow: hidden; */
+}
+
+.penguinHeaderTop,
+.penguinHeaderBottom {
+  width: 23%;
+  height: 17%;
+  /* border: 1px solid rgb(28, 226, 21); */
+  position: absolute;
+  left: 51%;
+  top: 62%;
+  transform: translate(-50%, -50%);
+}
+
+
+/* 卡牌翻转 */
+.container {
+  display: none;
+  width: 60%;
+  height: 50%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  perspective: 800px;
+  opacity: 0;
+  /* border: 1px solid cadetblue; */
+}
+
+#card {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transform-style: preserve-3d;
+  transition: 1s;
+}
+
+#card figure {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+#card .front {
+  background: url('../images/94.png') no-repeat;
+  background-size: 100% 100%;
+}
+
+#card .back {
+  background: url('../images/tarots_1_1.png') no-repeat;
+  background-size: 100% 100%;
+  transform: rotateY(180deg);
+}
+
+#card.flipped {
+  transform: rotateY(180deg);
+}
+
+/* 占卜结果信息条 */
+.message {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.messageList {
+  width: 100%;
+  height: 100%;
+  padding-left: 4%;
+  padding-top: 10%;
+  transform: scale(0.8);
+}
+
+.messageList li {
+  margin: 20px 0;
+  opacity: 0;
+  transform: translateX(-100px);
+}
+
+.messageList li p {
+  font-size: 34px;
+  /* border: 1px solid red; */
+  width: 93%;
+  height: 90%;
+  display: flex;
+  align-items: center;
+  padding-left: 5%;
+}
+
+.messageList li:nth-child(1) p {
+  padding-left: 17%;
+}
+
+.messageList li:nth-child(1) {
+  height: 7%;
+  width: 29%;
+  background: url('../images/123.png') no-repeat;
+  background-size: 100% 100%;
+}
+
+.messageList li:nth-child(2) {
+  height: 31%;
+  width: 40%;
+  background: url('../images/104.png') no-repeat;
+  background-size: 100% 100%;
+}
+
+.messageList li:nth-child(3) {
+  height: 7%;
+  width: 52%;
+  background: url('../images/105.png') no-repeat;
+  background-size: 100% 100%;
+}
+
+.messageList li:nth-child(4) {
+  height: 9%;
+  width: 76%;
+  background: url('../images/106.png') no-repeat;
+  background-size: 100% 100%;
+}
+
+.messageList li:nth-child(5) {
+  height: 9%;
+  width: 76%;
+  background: url('../images/106.png') no-repeat;
+  background-size: 100% 100%;
+}
+
+.messageList li:nth-child(6) {
+  height: 9%;
+  width: 82%;
+  background: url('../images/108.png') no-repeat;
+  background-size: 100% 100%;
+}
+
+.messageList li:nth-child(7) {
+  height: 9%;
+  width: 82%;
+  background: url('../images/108.png') no-repeat;
+  background-size: 100% 100%;
+}
+
+
+
+/* 头部篇章和音乐 */
+.herder {
+  width: 100%;
+  height: 5%;
+  position: absolute;
+  top: 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.herder div:nth-child(1) {
+  background: url('../images/writings1.png') no-repeat;
+  /* border: 1px solid red; */
+  background-size: 100% 100%;
+  width: 11%;
+  height: 25%;
+  margin-left: 10%;
+  opacity: 0;
+  transition: 1s;
+}
+
+.herder div:nth-child(2) {
+  width: 7%;
+  height: 72%;
+  margin-right: 10%;
+}
+
+@keyframes spinoffPulse {
+  0% {
+    transform: rotate(0deg)
+  }
+
+  100% {
+    transform: rotate(360deg)
+  }
+}
+
+.music1 {
+  background: url('../images/openmusic.png') no-repeat;
+  animation: spinoffPulse 1s linear 0s normal none infinite;
+}
+
+.music2 {
+  background: url('../images/chosemusic.png') no-repeat;
+}
+
+/* 用户看见的结果 */
+.testResult {
+  position: absolute;
+  -webkit-overflow-scrolling: touch;
+  transition: 2s;
+  display: none;
+  opacity: 0;
+  font-size: 26px;
+}
+
+.testResultSpan {
+  width: 60%;
+  top: 8.8%;
+  left: 50%;
+  color: white;
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  letter-spacing: 3px;
+  font-weight: lighter;
+}
+
+.testResultPhoto {
+  width: 18%;
+  height: 4%;
+  border-radius: 50%;
+  left: 20%;
+  top: 13%;
+  /* overflow: hidden; */
+  background: url('../images/userPhoto.png') no-repeat;
+  background-size: 100% 100%;
+}
+
+.testResultName {
+  width: 19%;
+  height: 1%;
+  left: 20%;
+  top: 15.8%;
+  text-align: center;
+  font-size: 24px;
+}
+
+.testResultTitle {
+  /* width: 43%;
+  height: 1.3%; */
+  left: 61%;
+  top: 14.7%;
+}
+
+.testResultMedal {
+  left: 21%;
+  top: 20.3%;
+}
+
+.testResultBadge {
+  width: 56%;
+  height: 1.4%;
+  left: 62%;
+  top: 20%;
+  color: white;
+  display: flex;
+  align-items: center;
+  font-size: 32px;
+  letter-spacing: 6px;
+  font-weight: bold;
+}
+
+.testResultPercentage {
+  width: 5%;
+  height: 1%;
+  top: 21.6%;
+  left: 50.5%;
+  color: #F19717;
+  font-weight: bold;
+  font-size: 26px;
+}
+
+.testResultText {
+  width: 74%;
+  height: 7%;
+  left: 50%;
+  top: 27%;
+  letter-spacing: 0.5px;
+  line-height: 40px;
+  text-align: justify;
+  display: flex;
+  align-items: center;
+}
+
+/* 用户看不见 隐藏div 提供canvas2image */
+#shareContent {
+  width: 100%;
+  height: 1262px;
+  position: absolute;
+  -webkit-overflow-scrolling: touch;
+  left: -150%;
+  top: 0%;
+  font-size: 26px;
+  display: none;
+}
+
+
+.shareContentSpan,
+.shareContentPhoto,
+.shareContentName,
+.shareContentTitle,
+.shareContentMedal,
+.shareContentBadge,
+.shareContentPercentage,
+.shareContentText,
+.testResultSpan,
+.testResultPhoto,
+.testResultName,
+.testResultTitle,
+.testResultMedal,
+.testResultBadge,
+.testResultPercentage,
+.testResultText {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  /* border: 3px solid rgb(255, 8, 0); */
+}
+
+.shareContentSpan {
+  width: 60%;
+  height: 3%;
+  left: 50%;
+  top: 15%;
+  color: white;
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  letter-spacing: 3px;
+  font-weight: lighter;
+}
+
+.shareContentPhoto {
+  width: 17%;
+  height: 10%;
+  border-radius: 50%;
+  left: 20%;
+  top: 25.5%;
+  /* overflow: hidden; */
+  background: url('../images/userPhoto.png') no-repeat;
+  background-size: 100% 100%;
+}
+
+.shareContentName {
+  width: 18%;
+  height: 3%;
+  left: 20%;
+  top: 32.5%;
+  text-align: center;
+  font-size: 24px;
+}
+
+.shareContentTitle {
+  /* width: 40%;
+  height: 3.5%; */
+  left: 61%;
+  top: 30.4%;
+}
+
+.shareContentMedal {
+  left: 21%;
+  top: 45.3%;
+}
+
+.shareContentBadge {
+  width: 56%;
+  height: 3.4%;
+  left: 62%;
+  top: 44.6%;
+  color: white;
+  display: flex;
+  align-items: center;
+  font-size: 32px;
+  letter-spacing: 6px;
+  font-weight: bold;
+}
+
+.shareContentPercentage {
+  width: 5%;
+  height: 2.5%;
+  top: 48.6%;
+  left: 50.5%;
+  color: #F19717;
+  font-weight: bold;
+  font-size: 26px;
+}
+
+.shareContentText {
+  width: 78%;
+  height: 16%;
+  left: 50%;
+  top: 62%;
+  letter-spacing: 0.5px;
+  line-height: 40px;
+  text-align: justify;
+  display: flex;
+  align-items: center;
+}
+
+#button {
+  position: absolute;
+  left: 26%;
+  top: 84%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 100px;
+  opacity: 0;
+  z-index: 999;
+  background-color: rebeccapurple;
+  font-size: 26px;
+  color: white;
+}
+
+.skip {
+  width: 21%;
+  height: 4%;
+  background-color: blue;
+  position: absolute;
+  left: 20%;
+  top: 96%;
+  transform: translate(-50%, -50%);
+}
+
+#video {
+  position: absolute;
+  top: 82.33%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 84.8%;
+  height: 13%;
+  object-fit: fill;
+}
+
+#play {
+  position: absolute;
+  top: 82.35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 17%;
+  height: 4%;
+  background-color: transparent;
+}
+
+#posterQ {
+  position: absolute;
+  top: 88.3%;
+  left: 83%;
+  transform: translate(-50%, -50%);
+  transition: 1s;
+}

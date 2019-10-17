@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>测测你最近有什么「头等大事」</title>
+  <meta charset="UTF-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <script src="/lib/pixi.min.js"></script>
+  <script src="/lib/AlloyTouc.js"></script>
+  <script src="/lib/TweenMax.min.js"></script>
+  <script src="/lib/TimelineMax.min.js"></script>
+  <script src="/lib/tink.js"></script>
+  <script src="/javascripts/jquery-3.4.1.min.js"></script>
+  <script src="/javascripts/html2canvas.min.js"></script>
+  <script src="/javascripts/canvas2image.js"></script>
+  <script src="/json/questionQ1.js"></script>
+
+</head>
+
+<body>
+  <div id="canvas-box" class="canvas">
+    <!-- Loading页面 -->
+    <!-- 背景层 -->
+    <div class="loadingBackground" id="loadingBackground">
+      <!-- 中间黑圈-文字框-企鹅身体 -->
+      <div class="loadingCenter">
+        <!--动态层 企鹅手臂 头部表情 星星 -->
+        <div class="loadingStar"></div>
+        <div class="penguinHeaderTop"></div>
+        <div class="penguinHeaderBottom"></div>
+        <div class="penguinArmLeft"></div>
+        <div class="penguinArmRight"></div>
+        <!-- 加载文字 -->
+        <div class="loadingText" id="Loading">
+          <p id="loadingText">正在0%奋力</p>
+          <p>加载ing</p>
+        </div>
+      </div>
+    </div>
+    <!-- 头部篇章和音乐DIV -->
+    <header class="herder" id="herder">
+      <div class="writings" id="writings"></div>
+      <div class="music1" id="music"></div>
+    </header>
+    <!-- 占卜牌点击事件模板DIV -->
+    <div id="poker">
+      <div class="poker-left poker-item"></div>
+      <div class="poker-center poker-item"></div>
+      <div class="poker-right poker-item"></div>
+    </div>
+    <!-- 题目模板DIV -->
+    <div id="quesitionQ1-box">
+      <div class="quesitionQ1-item quesitionQ1-item0"></div>
+      <div class="quesitionQ1-item quesitionQ1-item1"></div>
+      <div class="quesitionQ1-item quesitionQ1-item2"></div>
+      <div class="quesitionQ1-item quesitionQ1-item3"></div>
+    </div>
+    <!-- 遮罩模板DIV -->
+    <div class="shade" id="shade">
+      <img id="Lei" src="/images/39.png">
+      <div class="emoji-item" id="emoji-item"></div>
+    </div>
+    <!-- 卡牌翻转DIV -->
+    <div class="container" id="container">
+      <div id="card">
+        <figure class="front"></figure>
+        <figure class="back" id="back"></figure>
+      </div>
+    </div>
+    <!-- 占卜结果信息条DIV -->
+    <div class="message" id="message">
+      <ul class="messageList">
+        <li class="messageItem1">
+          <p>测试完毕</p>
+        </li>
+        <li class="messageItem2">
+          <p></p>
+        </li>
+        <li class="messageItem3">
+          <p>恭喜你......</p>
+        </li>
+        <li class="messageItem4">
+          <p>牌数字17，高阶牌，正位</p>
+        </li>
+        <li class="messageItem5">
+          <p>象征着意志力超越了欲望，转而向内探寻能量</p>
+        </li>
+        <li class="messageItem6">
+          <p>这是一张属于理想精神，并拥有无限创造力的牌</p>
+        </li>
+        <li class="messageItem7">
+          <p>详细报告正在生成中，请稍等...</p>
+        </li>
+      </ul>
+    </div>
+    <!-- 测试结果页长图 -->
+    <div class="testResult" id="testResult">
+      <img src="/images/124.png">
+      <span class="testResultSpan">VOL.LI.2019 测试报告编码： NO.123456</span>
+      <div class="testResultPhoto"></div>
+      <span class="testResultName">BLONGAI</span>
+      <img src="/images/Title.png" class="testResultTitle">
+      <span class="testResultBadge">运气爆棚认证章</span>
+      <img src="/images/end/badge_1.png" class="testResultMedal">
+      <span class="testResultPercentage">5%</span>
+      <p class="testResultText">下半年可能因为社会的压力，郁郁寡欢一段时间。 别灰心！某些大厂员工也一样，人到中年卖保险。 认真思索过去你认为不切实际的想法，说不定就是带来财富的机会。</p>
+      <video id="video" src="/video/video.mp4" poster="/images/poster.png" autoplay="meta" x5-video-player-type="h5"
+        x5-video-player-fullscreen="true" x5-video-orientation="portraint" webkit-playsinline playsinline
+        type="video/mp4" controls></video>
+      <!-- <div id="play"></div> -->
+      <img src="/images/posterQ.png" id="posterQ">
+    </div>
+    <!-- canvas2html专用div 数据可变 -->
+    <div class="shareContent" id="shareContent">
+      <img crossorigin="anonymous" src="/images/125.png" id="canvasToImage">
+      <span class="shareContentSpan">VOL.LI.2019 测试报告编码： NO.123456</span>
+      <div class="shareContentPhoto"></div>
+      <span class="shareContentName">BLONGAI</span>
+      <img crossorigin="anonymous" src="/images/Title.png" class="shareContentTitle">
+      <img crossorigin="anonymous" src="/images/end/badge_1.png" class="shareContentMedal">
+      <span class="shareContentBadge">运气爆棚认证章</span>
+      <span class="shareContentPercentage">5%</span>
+      <p class="shareContentText">下半年可能因为社会的压力，郁郁寡欢一段时间。 别灰心！某些大厂员工也一样，人到中年卖保险。 认真思索过去你认为不切实际的想法，说不定就是带来财富的机会。</p>
+    </div>
+    <!-- <button id="button">生成IMG</button> -->
+    <div id="button">再测一次,暂未实现</div>
+    <!-- <div class="skip" id="skip"></div> -->
+    <!-- canvas2Image在这 -->
+    <!-- canvas画布在这 -->
+
+  </div>
+</body>
+
+<!-- 初始-场景-题目-适配-加载精灵-->
+<script src="/javascripts/index.js"></script>
+<!-- 第一部分动画 首页-L记咖啡前沿 -->
+<script src="/javascripts/page1.js"></script>
+<!-- 第二部分动画 L记咖啡开始 -->
+<script src="/javascripts/page2.js"></script>
+<!-- 第三部分动画 打电话场景 -->
+<script src="/javascripts/page3.js"></script>
+<!-- 第四部分动画 占卜页面 -->
+<script src="/javascripts/page4.js"></script>
+<!--  -->
+<!-- canvas2IMG在这 -->
+<!-- 雨/星 -->
+<script src="/javascripts/rain.js"></script>
+<script src="/javascripts/stars.js"></script>
+
+</html>
